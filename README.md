@@ -2,12 +2,17 @@
 * GameTable 
 
 TableConveter
-  Excel2Table
+  
+  - Excel2Table
 
 TableSystem
-  TableLocator
-  Table
-  Descriptor
+ 
+  - TableLocator
+  
+  - Table
+  
+  - Descriptor
 
 Utility
-  Unity
+  
+ - Unity
