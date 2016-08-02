@@ -1,6 +1,4 @@
 # GameTable
-* GameTable 
-
 TableConveter
   
   - Excel2Table
