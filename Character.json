@@ -1,0 +1,168 @@
+[
+    {
+        "Skill": [
+            {
+                "valueRate": 0.6,
+                "name": "캐릭터1 스킬1",
+                "effectType": "타입1",
+                "description": "스킬설명1",
+                "value": 30.0
+            },
+            {
+                "valueRate": 0.5,
+                "name": "캐릭터1 스킬2",
+                "effectType": "타입2",
+                "description": "스킬설명2",
+                "value": 40.0
+            },
+            {
+                "valueRate": 0.5,
+                "name": "캐릭터1 스킬3",
+                "effectType": "타입3",
+                "description": "스킬설명3",
+                "value": 10.0
+            },
+            {
+                "valueRate": 0.5,
+                "name": "캐릭터1 스킬4",
+                "effectType": "타입4",
+                "description": "스킬설명4",
+                "value": 20.0
+            }
+        ],
+        "classType": "전사",
+        "name": "캐릭터1",
+        "id": "CHA0001",
+        "Upgrade": [
+            {
+                "power": 10.0,
+                "level": 1.0
+            },
+            {
+                "power": 20.0,
+                "level": 2.0
+            },
+            {
+                "power": 30.0,
+                "level": 3.0
+            },
+            {
+                "power": 40.0,
+                "level": 4.0
+            }
+        ]
+    },
+    {
+        "Skill": [
+            {
+                "valueRate": 0.5,
+                "name": "캐릭터2 스킬1",
+                "effectType": "타입5",
+                "description": "스킬설명5",
+                "value": 30.0
+            },
+            {
+                "valueRate": 0.5,
+                "name": "캐릭터2 스킬2",
+                "effectType": "타입6",
+                "description": "스킬설명6",
+                "value": 40.0
+            },
+            {
+                "valueRate": 0.5,
+                "name": "캐릭터2 스킬3",
+                "effectType": "타입7",
+                "description": "스킬설명7",
+                "value": 10.0
+            },
+            {
+                "valueRate": 0.5,
+                "name": "캐릭터2 스킬4",
+                "effectType": "타입8",
+                "description": "스킬설명8",
+                "value": 20.0
+            }
+        ],
+        "classType": "궁수",
+        "name": "캐릭터2",
+        "id": "CHA0002",
+        "Upgrade": [
+            {
+                "power": 10.0,
+                "level": 1.0
+            },
+            {
+                "power": 20.0,
+                "level": 2.0
+            },
+            {
+                "power": 30.0,
+                "level": 3.0
+            },
+            {
+                "power": 40.0,
+                "level": 4.0
+            }
+        ]
+    },
+    {
+        "Skill": [
+            {
+                "valueRate": 0.5,
+                "name": "캐릭터3 스킬1",
+                "effectType": "타입9",
+                "description": "스킬설명9",
+                "value": 30.0
+            },
+            {
+                "valueRate": 0.5,
+                "name": "캐릭터3 스킬2",
+                "effectType": "타입10",
+                "description": "스킬설명10",
+                "value": 10.0
+            },
+            {
+                "valueRate": 0.5,
+                "name": "캐릭터3 스킬3",
+                "effectType": "타입11",
+                "description": "스킬설명11",
+                "value": 20.0
+            },
+            {
+                "valueRate": 0.5,
+                "name": "캐릭터3 스킬4",
+                "effectType": "타입12",
+                "description": "스킬설명12",
+                "value": 50.0
+            }
+        ],
+        "classType": "도적",
+        "name": "캐릭터3",
+        "id": "CHA0003",
+        "Upgrade": [
+            {
+                "power": 10.0,
+                "level": 1.0
+            },
+            {
+                "power": 20.0,
+                "level": 2.0
+            },
+            {
+                "power": 30.0,
+                "level": 3.0
+            },
+            {
+                "power": 40.0,
+                "level": 4.0
+            }
+        ]
+    },
+    {
+        "Skill": [],
+        "classType": "마법사",
+        "name": "캐릭터4",
+        "id": "CHA0004",
+        "Upgrade": []
+    }
+]
