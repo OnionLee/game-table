@@ -2,7 +2,8 @@ import xlrd
 import os
 import copy
 import json
-        
+from collections import OrderedDict
+
 class Table:
         def __init__(self, sheet):
                 self.col_names = []
@@ -23,7 +24,7 @@ class Table:
                         self.descriptors.append(self.get_descriptor(row))
 
         def get_descriptor(self, row):
-                descriptor = {}
+                descriptor = OrderedDict()
                 for j in range(0, len(row)):
                         key = self.col_names[j]
                         if key[0] == '_':
@@ -49,11 +50,11 @@ class Table:
                 return descriptors
                         
         def merge(self, table):
+                self.col_names.append(table.name)
                 for descriptor in self.descriptors:
                         id = descriptor['id']
-                        self.col_names.append(table.name)
                         descriptor[table.name] = table.get_descriptors_by_id(id)
-
+                        
         def to_json(self, pretty):
                 if pretty:
                         return json.dumps(self.descriptors, ensure_ascii = False, indent = 4)
@@ -98,4 +99,3 @@ class Converter:
 
 converter = Converter("json", True)
 converter.convert('test.xlsx')
-
