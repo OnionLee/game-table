@@ -4,6 +4,15 @@ import copy
 import json
 from collections import OrderedDict
 
+PARENT_NAME_ROW = 0
+PARENT_NAME_COL = 0
+COLUMN_NAMES_ROW = 1
+DATA_STARTING_ROW = 2
+ROOT_NAME = '*root'
+ID_COLUMN_NAME = 'id'
+PARENT_COLUMN_NAME = '*parent'
+IGNORE_WILDCARD = '_'
+
 
 class Table:
 
@@ -18,15 +27,15 @@ class Table:
         self.name = sheet.name
 
     def init_parent_name(self, sheet):
-        row = sheet.row_values(0)
-        self.parent_name = row[0]
+        row = sheet.row_values(PARENT_NAME_ROW)
+        self.parent_name = row[PARENT_NAME_COL]
         if type(self.parent_name) is not str:
             raise Exception('Parent name is not string')
 
-        self.is_root = self.parent_name == '*root'
+        self.is_root = self.parent_name == ROOT_NAME
 
     def init_metadata(self, sheet):
-        row = sheet.row_values(1)
+        row = sheet.row_values(COLUMN_NAMES_ROW)
         self.is_parent = False
         self.is_child = False
         self.column_names = []
@@ -34,23 +43,36 @@ class Table:
             if type(value) is not str:
                 raise Exception('Column name is not string')
 
-            if value == 'id':
+            if value == ID_COLUMN_NAME:
                 self.is_parent = True
-            if value == '*parent':
+            if value == PARENT_COLUMN_NAME:
                 self.is_child = True
             self.column_names.append(value)
 
         if self.is_root and self.is_child:
-            raise Exception('Root table must not have "*parent" column')
+            raise Exception('Root table must not have "' +
+                            PARENT_COLUMN_NAME + '" column')
 
         if not self.is_root and not self.is_child:
-            raise Exception('Child table must have "*parent" column')
+            raise Exception('Child table must have "' +
+                            PARENT_COLUMN_NAME + '" column')
 
     def init_descriptors(self, sheet):
         self.descriptors = []
-        for i in range(2, sheet.nrows):
-            row = sheet.row_values(i)
-            self.descriptors.append(self.get_descriptor(row))
+        for i in range(DATA_STARTING_ROW, sheet.nrows):
+            col = sheet.row_values(i)
+            self.descriptors.append(self.get_descriptor(col))
+
+    def get_descriptor(self, col):
+        descriptor = OrderedDict()
+        for i in range(0, len(col)):
+            key = self.column_names[i]
+            if key[0] == IGNORE_WILDCARD:
+                continue
+
+            descriptor[key] = col[i]
+
+        return descriptor
 
     def init_id_index_map(self):
         if not self.is_parent:
@@ -58,24 +80,13 @@ class Table:
 
         self.id_index_map = {}
         for descriptor in self.descriptors:
-            id = descriptor['id']
+            id = descriptor[ID_COLUMN_NAME]
             self.id_index_map[id] = self.descriptors.index(descriptor)
-
-    def get_descriptor(self, row):
-        descriptor = OrderedDict()
-        for i in range(0, len(row)):
-            key = self.column_names[i]
-            if key[0] == '_':
-                continue
-
-            descriptor[key] = row[i]
-
-        return descriptor
 
     def merge_child_table(self, table):
         self.add_child_descriptor_list(table.name)
         for descriptor in table.descriptors:
-            parent_id = descriptor['*parent']
+            parent_id = descriptor[PARENT_COLUMN_NAME]
             parent_idx = self.id_index_map[parent_id]
             parent_descriptor = self.descriptors[parent_idx]
             parent_descriptor[table.name].append(descriptor)
@@ -86,7 +97,7 @@ class Table:
 
     def remove_parent_column(self):
         for descriptor in self.descriptors:
-            del descriptor['*parent']
+            del descriptor[PARENT_COLUMN_NAME]
 
     def save_to_json(self, pretty_print):
         if pretty_print:
@@ -126,7 +137,7 @@ class Converter:
         root_tables = []
 
         for sheet in sheets:
-            if sheet.name[0] == '_':
+            if sheet.name[0] == IGNORE_WILDCARD:
                 continue
 
             table = Table(sheet)
