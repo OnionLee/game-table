@@ -7,32 +7,64 @@ from collections import OrderedDict
 
 class Table:
 
-    def __init__(self, sheet, is_root):
-        self.name = sheet.name
-        self.is_root = is_root
-        self.col_names = []
-        self.descriptors = []
-        self.idx_map = {}
-
-        self.init_col_names(sheet)
+    def __init__(self, sheet):
+        self.init_name(sheet)
+        self.init_parent_name(sheet)
+        self.init_metadata(sheet)
         self.init_descriptors(sheet)
-        if is_root:
-            self.init_idx_map()
+        self.init_id_index_map()
 
-    def init_col_names(self, sheet):
+    def init_name(self, sheet):
+        self.name = sheet.name
+
+    def init_parent_name(self, sheet):
         row = sheet.row_values(0)
+        self.parent_name = row[0]
+        if type(self.parent_name) is not str:
+            raise Exception('Parent name is not string')
+
+        self.is_root = self.parent_name == '*root'
+
+    def init_metadata(self, sheet):
+        row = sheet.row_values(1)
+        self.is_parent = False
+        self.is_child = False
+        self.column_names = []
         for value in row:
-            self.col_names.append(value)
+            if type(value) is not str:
+                raise Exception('Column name is not string')
+
+            if value == 'id':
+                self.is_parent = True
+            if value == '*parent':
+                self.is_child = True
+            self.column_names.append(value)
+
+        if self.is_root and self.is_child:
+            raise Exception('Root table must not have "*parent" column')
+
+        if not self.is_root and not self.is_child:
+            raise Exception('Child table must have "*parent" column')
 
     def init_descriptors(self, sheet):
-        for i in range(1, sheet.nrows):
+        self.descriptors = []
+        for i in range(2, sheet.nrows):
             row = sheet.row_values(i)
             self.descriptors.append(self.get_descriptor(row))
+
+    def init_id_index_map(self):
+        if not self.is_parent:
+            return
+
+        self.id_index_map = {}
+        for descriptor in self.descriptors:
+            id = descriptor['id']
+            self.id_index_map[id] = self.descriptors.index(descriptor)
 
     def get_descriptor(self, row):
         descriptor = OrderedDict()
         for i in range(0, len(row)):
-            key = self.col_names[i]
+            key = self.column_names[i]
             if key[0] == '_':
                 continue
 
@@ -40,42 +72,23 @@ class Table:
 
         return descriptor
 
-    def init_idx_map(self):
-        for descriptor in self.descriptors:
-            id = descriptor['id']
-            self.idx_map[id] = self.descriptors.index(descriptor)
-
-    def merge_child_table(self, child_table):
-        if child_table.is_root:
-            print(self.name + ' table is root table, merge failed')
-            return
-
-        self.add_child_list(child_table)
-
-        for descriptor in child_table.descriptors:
-            if('*parent' not in descriptor):
-                print(self.name + ' table is not child table')
-                continue
-
+    def merge_child_table(self, table):
+        self.add_child_descriptor_list(table.name)
+        for descriptor in table.descriptors:
             parent_id = descriptor['*parent']
-            parent_idx = self.idx_map[parent_id]
+            parent_idx = self.id_index_map[parent_id]
             parent_descriptor = self.descriptors[parent_idx]
+            parent_descriptor[table.name].append(descriptor)
 
-            child_descriptor = copy.deepcopy(descriptor)
-            del child_descriptor['*parent']
-
-            parent_descriptor[child_table.name].append(child_descriptor)
-
-    def add_child_list(self, child_table):
-        self.col_names.append(child_table.name)
+    def add_child_descriptor_list(self, name):
         for descriptor in self.descriptors:
-            descriptor[child_table.name] = []
+            descriptor[name] = []
+
+    def remove_parent_column(self):
+        for descriptor in self.descriptors:
+            del descriptor['*parent']
 
     def save_to_json(self, pretty_print):
-        if not self.is_root:
-            print(self.name + ' table is child table, save failed')
-            return
-
         if pretty_print:
             string = json.dumps(self.descriptors, ensure_ascii=False, indent=4)
         else:
@@ -90,25 +103,50 @@ class Converter:
     def __init__(self, pretty_print):
         self.pretty_print = pretty_print
 
-    def get_workbook(filename):
-        path = os.path.abspath(filename)
-        return xlrd.open_workbook(path)
-
     def convert(self, filename):
-        workbook = Converter.get_workbook(filename)
-        sheets = workbook.sheets()
+        print(filename + 'convert starting...')
 
-        root_sheet = sheets[0]
-        root_table = Table(root_sheet, True)
-        print('Convert starting... root table is ' + root_sheet.name)
+        sheets = Converter.get_sheets(filename)
 
-        for i in range(1, len(sheets)):
-            child_sheet = sheets[i]
-            if(child_sheet.name[0] == '_'):
-                continue
+        root_table, tables = Converter.get_tables(sheets)
 
-            child_table = Table(child_sheet, False)
-            root_table.merge_child_table(child_table)
+        Converter.post_process(tables)
 
         root_table.save_to_json(self.pretty_print)
+
         print('Done')
+
+    def get_sheets(filename):
+        path = os.path.abspath(filename)
+        workbook = xlrd.open_workbook(path)
+        return workbook.sheets()
+
+    def get_tables(sheets):
+        tables = {}
+        root_tables = []
+
+        for sheet in sheets:
+            if sheet.name[0] == '_':
+                continue
+
+            table = Table(sheet)
+            tables[table.name] = table
+            if table.is_root:
+                root_tables.append(table)
+
+        if len(root_tables) == 1:
+            return root_tables[0], tables
+        else:
+            raise Exception('Root table must be one')
+
+    def post_process(tables):
+        for name, table in tables.items():
+            if table.is_root:
+                continue
+
+            parent_table = tables[table.parent_name]
+            if not parent_table.is_parent:
+                raise Exception('Parent table must have id column')
+
+            parent_table.merge_child_table(table)
+            table.remove_parent_column()
