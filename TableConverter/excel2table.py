@@ -2,6 +2,7 @@ import xlrd
 import os
 import copy
 import json
+import codecs
 from collections import OrderedDict
 
 PARENT_NAME_ROW = 0
@@ -105,7 +106,7 @@ class Table:
         else:
             string = json.dumps(self.descriptors, ensure_ascii=False)
 
-        with open(self.name + '.json', 'w') as f:
+        with codecs.open(self.name + '.json', 'w', 'utf-8') as f:
             f.write(string)
 
 
