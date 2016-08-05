@@ -117,7 +117,7 @@ class Converter:
         self.export_path = export_path
 
     def convert(self, filename):
-        print(filename + 'convert starting...')
+        print(filename + ' Convert starting...')
 
         sheets = Converter.get_sheets(filename)
 
