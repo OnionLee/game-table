@@ -2,167 +2,122 @@
     {
         "id": "CHA0001",
         "name": "캐릭터1",
-        "classType": "전사",
-        "Skill": [
+        "Child": [
             {
-                "name": "캐릭터1 스킬1",
-                "effectType": "타입1",
-                "value": 30.0,
-                "valueRate": 0.6,
-                "description": "스킬설명1"
+                "id": "CCC0001",
+                "name": "캐릭터 자식1",
+                "power": 0.0,
+                "ChildChild": [
+                    {
+                        "name": "캐릭터 자식의 자식1",
+                        "power": 1.3
+                    },
+                    {
+                        "name": "캐릭터 자식의 자식2",
+                        "power": 1.3
+                    },
+                    {
+                        "name": "캐릭터 자식의 자식3",
+                        "power": 1.3
+                    }
+                ]
             },
             {
-                "name": "캐릭터1 스킬2",
-                "effectType": "타입2",
-                "value": 40.0,
-                "valueRate": 0.5,
-                "description": "스킬설명2"
+                "id": "CCC0002",
+                "name": "캐릭터 자식2",
+                "power": 1.0,
+                "ChildChild": [
+                    {
+                        "name": "캐릭터 자식의 자식4",
+                        "power": 1.3
+                    },
+                    {
+                        "name": "캐릭터 자식의 자식5",
+                        "power": 1.3
+                    },
+                    {
+                        "name": "캐릭터 자식의 자식6",
+                        "power": 1.3
+                    }
+                ]
             },
             {
-                "name": "캐릭터1 스킬3",
-                "effectType": "타입3",
-                "value": 10.0,
-                "valueRate": 0.5,
-                "description": "스킬설명3"
-            },
-            {
-                "name": "캐릭터1 스킬4",
-                "effectType": "타입4",
-                "value": 20.0,
-                "valueRate": 0.5,
-                "description": "스킬설명4"
-            }
-        ],
-        "Upgrade": [
-            {
-                "level": 1.0,
-                "power": 10.0
-            },
-            {
-                "level": 2.0,
-                "power": 20.0
-            },
-            {
-                "level": 3.0,
-                "power": 30.0
-            },
-            {
-                "level": 4.0,
-                "power": 40.0
+                "id": "CCC0003",
+                "name": "캐릭터 자식3",
+                "power": 2.0,
+                "ChildChild": [
+                    {
+                        "name": "캐릭터 자식의 자식7",
+                        "power": 1.3
+                    },
+                    {
+                        "name": "캐릭터 자식의 자식8",
+                        "power": 1.3
+                    },
+                    {
+                        "name": "캐릭터 자식의 자식9",
+                        "power": 1.3
+                    }
+                ]
             }
         ]
     },
     {
         "id": "CHA0002",
         "name": "캐릭터2",
-        "classType": "궁수",
-        "Skill": [
+        "Child": [
             {
-                "name": "캐릭터2 스킬1",
-                "effectType": "타입5",
-                "value": 30.0,
-                "valueRate": 0.5,
-                "description": "스킬설명5"
+                "id": "CCC0004",
+                "name": "캐릭터 자식4",
+                "power": 3.0,
+                "ChildChild": []
             },
             {
-                "name": "캐릭터2 스킬2",
-                "effectType": "타입6",
-                "value": 40.0,
-                "valueRate": 0.5,
-                "description": "스킬설명6"
+                "id": "CCC0005",
+                "name": "캐릭터 자식5",
+                "power": 4.0,
+                "ChildChild": [
+                    {
+                        "name": "캐릭터 자식의 자식10",
+                        "power": 1.3
+                    }
+                ]
             },
             {
-                "name": "캐릭터2 스킬3",
-                "effectType": "타입7",
-                "value": 10.0,
-                "valueRate": 0.5,
-                "description": "스킬설명7"
-            },
-            {
-                "name": "캐릭터2 스킬4",
-                "effectType": "타입8",
-                "value": 20.0,
-                "valueRate": 0.5,
-                "description": "스킬설명8"
-            }
-        ],
-        "Upgrade": [
-            {
-                "level": 1.0,
-                "power": 10.0
-            },
-            {
-                "level": 2.0,
-                "power": 20.0
-            },
-            {
-                "level": 3.0,
-                "power": 30.0
-            },
-            {
-                "level": 4.0,
-                "power": 40.0
+                "id": "CCC0006",
+                "name": "캐릭터 자식6",
+                "power": 5.0,
+                "ChildChild": []
             }
         ]
     },
     {
         "id": "CHA0003",
         "name": "캐릭터3",
-        "classType": "도적",
-        "Skill": [
+        "Child": [
             {
-                "name": "캐릭터3 스킬1",
-                "effectType": "타입9",
-                "value": 30.0,
-                "valueRate": 0.5,
-                "description": "스킬설명9"
+                "id": "CCC0007",
+                "name": "캐릭터 자식7",
+                "power": 6.0,
+                "ChildChild": []
             },
             {
-                "name": "캐릭터3 스킬2",
-                "effectType": "타입10",
-                "value": 10.0,
-                "valueRate": 0.5,
-                "description": "스킬설명10"
+                "id": "CCC0008",
+                "name": "캐릭터 자식8",
+                "power": 7.0,
+                "ChildChild": []
             },
             {
-                "name": "캐릭터3 스킬3",
-                "effectType": "타입11",
-                "value": 20.0,
-                "valueRate": 0.5,
-                "description": "스킬설명11"
-            },
-            {
-                "name": "캐릭터3 스킬4",
-                "effectType": "타입12",
-                "value": 50.0,
-                "valueRate": 0.5,
-                "description": "스킬설명12"
-            }
-        ],
-        "Upgrade": [
-            {
-                "level": 1.0,
-                "power": 10.0
-            },
-            {
-                "level": 2.0,
-                "power": 20.0
-            },
-            {
-                "level": 3.0,
-                "power": 30.0
-            },
-            {
-                "level": 4.0,
-                "power": 40.0
+                "id": "CCC0009",
+                "name": "캐릭터 자식9",
+                "power": 8.0,
+                "ChildChild": [
+                    {
+                        "name": "캐릭터 자식의 자식11",
+                        "power": 1.3
+                    }
+                ]
             }
         ]
-    },
-    {
-        "id": "CHA0004",
-        "name": "캐릭터4",
-        "classType": "마법사",
-        "Skill": [],
-        "Upgrade": []
     }
 ]
