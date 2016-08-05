@@ -1,8 +1,9 @@
 import os
 from excel2table import Converter
 
+EXPORT_PATH = './'
 
-converter = Converter(True)
+converter = Converter(True, EXPORT_PATH)
 
 for path, dirs, files in os.walk('./'):
     for file in files:

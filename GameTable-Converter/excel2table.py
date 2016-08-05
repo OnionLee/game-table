@@ -100,20 +100,21 @@ class Table:
         for descriptor in self.descriptors:
             del descriptor[PARENT_COLUMN_NAME]
 
-    def save_to_json(self, pretty_print):
+    def save_to_json(self, pretty_print, export_path):
         if pretty_print:
             string = json.dumps(self.descriptors, ensure_ascii=False, indent=4)
         else:
             string = json.dumps(self.descriptors, ensure_ascii=False)
 
-        with codecs.open(self.name + '.json', 'w', 'utf-8') as f:
+        with codecs.open(export_path + self.name + '.json', 'w', 'utf-8') as f:
             f.write(string)
 
 
 class Converter:
 
-    def __init__(self, pretty_print):
+    def __init__(self, pretty_print, export_path):
         self.pretty_print = pretty_print
+        self.export_path = export_path
 
     def convert(self, filename):
         print(filename + 'convert starting...')
@@ -124,7 +125,7 @@ class Converter:
 
         Converter.post_process(tables)
 
-        root_table.save_to_json(self.pretty_print)
+        root_table.save_to_json(self.pretty_print, self.export_path)
 
         print('Done')
 
