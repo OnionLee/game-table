@@ -3,7 +3,7 @@
         "id": "CHA0001",
         "name": "캐릭터1",
         "class": "아쳐",
-        "SkillGroups": [
+        "SkillGroup": [
             {
                 "skillId": "SKI0001"
             },
@@ -19,7 +19,7 @@
         "id": "CHA0002",
         "name": "캐릭터2",
         "class": "전사",
-        "SkillGroups": [
+        "SkillGroup": [
             {
                 "skillId": "SKI0004"
             },
@@ -35,7 +35,7 @@
         "id": "CHA0003",
         "name": "캐릭터3",
         "class": "마법사",
-        "SkillGroups": [
+        "SkillGroup": [
             {
                 "skillId": "SKI0007"
             },
