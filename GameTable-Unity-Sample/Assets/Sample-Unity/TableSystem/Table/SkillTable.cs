@@ -1,12 +1,9 @@
 ﻿using System;
 
-namespace AssemblyCSharp
+public class SkillTable : GenericTable<SkillDescriptor>
 {
-	public class SkillTable
+	public SkillTable(string path)
+		:base(path)
 	{
-		public SkillTable ()
-		{
-		}
 	}
 }
-

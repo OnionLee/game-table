@@ -4,30 +4,18 @@ using Newtonsoft.Json;
 
 public class CharacterDescriptor : BaseDescriptor
 {
+	public class SkillGroupDescriptor
+	{
+		[JsonProperty("skillId")]
+		public string SkillId { get; private set; }
+	}
+
 	[JsonProperty("name")]
 	public string Name {get; private set;}
 
-	[JsonProperty("Child")]
-	public ReadOnlyCollection<ChildDescriptor> Childs {get; private set;}
-}
+	[JsonProperty("class")]
+	public string Class {get; private set;}
 
-public class ChildDescriptor : BaseDescriptor
-{
-	[JsonProperty("name")]
-	public string Name {get; private set;}
-
-	[JsonProperty("power")]
-	public float Power {get; private set;}
-
-	[JsonProperty("ChildChild")]
-	public ReadOnlyCollection<ChildChildDescriptor> ChildChilds {get; private set;}
-}
-
-public class ChildChildDescriptor : BaseDescriptor
-{
-	[JsonProperty("name")]
-	public string Name {get; private set;}
-
-	[JsonProperty("power")]
-	public float Power {get; private set;}
+	[JsonProperty("SkillGroup")]
+	public ReadOnlyCollection<SkillGroupDescriptor> SkillGroups {get; private set;}
 }

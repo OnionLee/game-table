@@ -44,7 +44,6 @@ public class GenericTable<T> where T : BaseDescriptor
 			
 			return null;
 		}
-			
 	}
 
 	public IEnumerable<T> All()

@@ -2,124 +2,48 @@
     {
         "id": "CHA0001",
         "name": "캐릭터1",
-        "isMonster": 0,
-        "Child": [
+        "class": "아쳐",
+        "SkillGroup": [
             {
-                "id": "CCC0001",
-                "name": "캐릭터 자식1",
-                "power": 0.0,
-                "ChildChild": [
-                    {
-                        "name": "캐릭터 자식의 자식1",
-                        "power": 1.3
-                    },
-                    {
-                        "name": "캐릭터 자식의 자식2",
-                        "power": 1.3
-                    },
-                    {
-                        "name": "캐릭터 자식의 자식3",
-                        "power": 1.3
-                    }
-                ]
+                "skillId": "SKI0001"
             },
             {
-                "id": "CCC0002",
-                "name": "캐릭터 자식2",
-                "power": 1.0,
-                "ChildChild": [
-                    {
-                        "name": "캐릭터 자식의 자식4",
-                        "power": 1.3
-                    },
-                    {
-                        "name": "캐릭터 자식의 자식5",
-                        "power": 1.3
-                    },
-                    {
-                        "name": "캐릭터 자식의 자식6",
-                        "power": 1.3
-                    }
-                ]
+                "skillId": "SKI0002"
             },
             {
-                "id": "CCC0003",
-                "name": "캐릭터 자식3",
-                "power": 2.0,
-                "ChildChild": [
-                    {
-                        "name": "캐릭터 자식의 자식7",
-                        "power": 1.3
-                    },
-                    {
-                        "name": "캐릭터 자식의 자식8",
-                        "power": 1.3
-                    },
-                    {
-                        "name": "캐릭터 자식의 자식9",
-                        "power": 1.3
-                    }
-                ]
+                "skillId": "SKI0003"
             }
         ]
     },
     {
         "id": "CHA0002",
         "name": "캐릭터2",
-        "isMonster": 1,
-        "Child": [
+        "class": "전사",
+        "SkillGroup": [
             {
-                "id": "CCC0004",
-                "name": "캐릭터 자식4",
-                "power": 3.0,
-                "ChildChild": []
+                "skillId": "SKI0004"
             },
             {
-                "id": "CCC0005",
-                "name": "캐릭터 자식5",
-                "power": 4.0,
-                "ChildChild": [
-                    {
-                        "name": "캐릭터 자식의 자식10",
-                        "power": 1.3
-                    }
-                ]
+                "skillId": "SKI0005"
             },
             {
-                "id": "CCC0006",
-                "name": "캐릭터 자식6",
-                "power": 5.0,
-                "ChildChild": []
+                "skillId": "SKI0006"
             }
         ]
     },
     {
         "id": "CHA0003",
         "name": "캐릭터3",
-        "isMonster": 0,
-        "Child": [
+        "class": "마법사",
+        "SkillGroup": [
             {
-                "id": "CCC0007",
-                "name": "캐릭터 자식7",
-                "power": 6.0,
-                "ChildChild": []
+                "skillId": "SKI0007"
             },
             {
-                "id": "CCC0008",
-                "name": "캐릭터 자식8",
-                "power": 7.0,
-                "ChildChild": []
+                "skillId": "SKI0008"
             },
             {
-                "id": "CCC0009",
-                "name": "캐릭터 자식9",
-                "power": 8.0,
-                "ChildChild": [
-                    {
-                        "name": "캐릭터 자식의 자식11",
-                        "power": 1.3
-                    }
-                ]
+                "skillId": "SKI0009"
             }
         ]
     }
