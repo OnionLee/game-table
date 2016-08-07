@@ -71,9 +71,25 @@ class Table:
             if key[0] == IGNORE_WILDCARD:
                 continue
 
-            descriptor[key] = col[i]
+            descriptor[key] = Table.convert_value(col[i])
 
         return descriptor
+
+    # xlrd is giving number as float
+    def check_integer(value):
+        return type(value) == float and int(value) == value
+
+    # xlrd is giving boolean as integer
+    def check_boolean(value):
+        return type(value) == int
+
+    def convert_value(value):
+        if Table.check_integer(value):
+            return int(value)
+        elif Table.check_boolean(value):
+            return bool(value)
+        else:
+            return value
 
     def init_id_index_map(self):
         if not self.is_parent:
