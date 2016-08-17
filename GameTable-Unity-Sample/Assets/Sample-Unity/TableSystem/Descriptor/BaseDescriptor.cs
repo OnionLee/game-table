@@ -16,5 +16,7 @@ public class BaseDescriptor
 
 	public virtual void CheckIntegrity()
 	{
+
 	}
 }
+

@@ -29,9 +29,12 @@ class Table:
 
     def init_parent_name(self, sheet):
         row = sheet.row_values(PARENT_NAME_ROW)
-        self.parent_name = row[PARENT_NAME_COL]
+        self.parent_name = str(row[PARENT_NAME_COL])
+        exception = str("*root")
+
         if type(self.parent_name) is not str:
-            raise Exception('Parent name is not string')
+            if self.parent_name is not exception:
+                raise Exception('Parent name is not string')
 
         self.is_root = self.parent_name == ROOT_NAME
 
@@ -41,14 +44,16 @@ class Table:
         self.is_child = False
         self.column_names = []
         for value in row:
-            if type(value) is not str:
+            var = str(value)
+
+            if type(var) is not str:
                 raise Exception('Column name is not string')
 
-            if value == ID_COLUMN_NAME:
+            if var == ID_COLUMN_NAME:
                 self.is_parent = True
-            if value == PARENT_COLUMN_NAME:
+            if var == PARENT_COLUMN_NAME:
                 self.is_child = True
-            self.column_names.append(value)
+            self.column_names.append(var)
 
         if self.is_root and self.is_child:
             raise Exception('Root table must not have "' +
@@ -75,14 +80,15 @@ class Table:
 
         return descriptor
 
-    # xlrd is giving number as float
+    @staticmethod
     def check_integer(value):
         return type(value) == float and int(value) == value
 
-    # xlrd is giving boolean as integer
+    @staticmethod
     def check_boolean(value):
         return type(value) == int
 
+    @staticmethod
     def convert_value(value):
         if Table.check_integer(value):
             return int(value)
@@ -143,13 +149,15 @@ class Converter:
 
         root_table.save_to_json(self.pretty_print, self.export_path)
 
-        print('Done')
+        print(filename + " convert is Done\n")
 
+    @staticmethod
     def get_sheets(filename):
         path = os.path.abspath(filename)
         workbook = xlrd.open_workbook(path)
         return workbook.sheets()
 
+    @staticmethod
     def get_tables(sheets):
         tables = {}
         root_tables = []
@@ -168,6 +176,7 @@ class Converter:
         else:
             raise Exception('Root table must be one')
 
+    @staticmethod
     def post_process(tables):
         for name, table in tables.items():
             if table.is_root:
