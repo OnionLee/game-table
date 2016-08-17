@@ -2,8 +2,7 @@
 
 public class CharacterTable : GenericTable<CharacterDescriptor>
 {
-	public CharacterTable(string path)
-		:base(path)
+	public CharacterTable(string path) : base(path)
 	{
 	}
 }

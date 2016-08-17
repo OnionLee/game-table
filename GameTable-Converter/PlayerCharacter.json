@@ -1,0 +1,41 @@
+[
+    {
+        "id": "CHAR0000", 
+        "name": "인간", 
+        "description": "인간이다", 
+        "BaseItem": [
+            {
+                "itemId": "IT0001"
+            }, 
+            {
+                "itemId": "IT0002"
+            }
+        ]
+    }, 
+    {
+        "id": "CHAR0001", 
+        "name": "천사", 
+        "description": "천사다", 
+        "BaseItem": [
+            {
+                "itemId": "IT0004"
+            }, 
+            {
+                "itemId": "IT0005"
+            }
+        ]
+    }, 
+    {
+        "id": "CHAR0002", 
+        "name": "악마", 
+        "description": "악마다", 
+        "BaseItem": [
+            {
+                "itemId": "IT0006"
+            }, 
+            {
+                "itemId": "IT0007"
+            }
+        ]
+    }
+]
