@@ -29,9 +29,7 @@ class Table:
 
     def init_parent_name(self, sheet):
         row = sheet.row_values(PARENT_NAME_ROW)
-        self.parent_name = str(row[PARENT_NAME_COL])
-        exception = str("*root")
-
+        self.parent_name = row[PARENT_NAME_COL]
         if type(self.parent_name) is not str:
             raise Exception('Parent name is not string')
 
@@ -77,15 +75,14 @@ class Table:
 
         return descriptor
 
-    @staticmethod
+    # xlrd is giving number as float
     def check_integer(value):
         return type(value) == float and int(value) == value
 
-    @staticmethod
+    # xlrd is giving boolean as integer
     def check_boolean(value):
         return type(value) == int
 
-    @staticmethod
     def convert_value(value):
         if Table.check_integer(value):
             return int(value)
@@ -148,13 +145,11 @@ class Converter:
 
         print(only_filename[-1] + ' convert is Done\n')
 
-    @staticmethod
     def get_sheets(filename):
         path = os.path.abspath(filename)
         workbook = xlrd.open_workbook(path)
         return workbook.sheets()
 
-    @staticmethod
     def get_tables(sheets):
         tables = {}
         root_tables = []
@@ -173,7 +168,6 @@ class Converter:
         else:
             raise Exception('Root table must be one')
 
-    @staticmethod
     def post_process(tables):
         for name, table in tables.items():
             if table.is_root:

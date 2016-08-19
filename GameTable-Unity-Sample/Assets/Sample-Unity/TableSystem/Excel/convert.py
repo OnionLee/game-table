@@ -1,7 +1,7 @@
 import os
 from excel2table import Converter
 
-EXPORT_PATH = './'
+EXPORT_PATH = '../Resources/Table/'
 
 converter = Converter(True, EXPORT_PATH)
 
