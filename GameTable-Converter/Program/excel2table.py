@@ -139,17 +139,16 @@ class Converter:
         self.export_path = export_path
 
     def convert(self, filename):
-        print(filename + ' Starting')
+        only_filename = filename.split('/')
+
+        print(only_filename[-1] + ' convert starting...')
 
         sheets = Converter.get_sheets(filename)
-
         root_table, tables = Converter.get_tables(sheets)
-
         Converter.post_process(tables)
-
         root_table.save_to_json(self.pretty_print, self.export_path)
 
-        print(filename + " Done\n")
+        print(only_filename[-1] + ' convert is Done\n')
 
     @staticmethod
     def get_sheets(filename):
