@@ -33,8 +33,7 @@ class Table:
         exception = str("*root")
 
         if type(self.parent_name) is not str:
-            if self.parent_name is not exception:
-                raise Exception('Parent name is not string')
+            raise Exception('Parent name is not string')
 
         self.is_root = self.parent_name == ROOT_NAME
 
@@ -44,16 +43,14 @@ class Table:
         self.is_child = False
         self.column_names = []
         for value in row:
-            var = str(value)
-
-            if type(var) is not str:
+            if type(value) is not str:
                 raise Exception('Column name is not string')
 
-            if var == ID_COLUMN_NAME:
+            if value == ID_COLUMN_NAME:
                 self.is_parent = True
-            if var == PARENT_COLUMN_NAME:
+            if value == PARENT_COLUMN_NAME:
                 self.is_child = True
-            self.column_names.append(var)
+            self.column_names.append(value)
 
         if self.is_root and self.is_child:
             raise Exception('Root table must not have "' +
@@ -139,17 +136,17 @@ class Converter:
         self.export_path = export_path
 
     def convert(self, filename):
-        print(filename + ' Convert starting...')
+
+        only_filename = filename.split('/')
+
+        print(only_filename[-1] + ' convert starting...')
 
         sheets = Converter.get_sheets(filename)
-
         root_table, tables = Converter.get_tables(sheets)
-
         Converter.post_process(tables)
-
         root_table.save_to_json(self.pretty_print, self.export_path)
 
-        print(filename + " convert is Done\n")
+        print(only_filename[-1] + ' convert is Done\n')
 
     @staticmethod
     def get_sheets(filename):
