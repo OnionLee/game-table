@@ -14,6 +14,8 @@ current_version = sys.version_info
 
 # Check version
 if current_version < REQUIRE_VERSION:
+    print('You Need Python 3.5 or later')
+    input()
     sys.exit()
 
 converter = Converter(True, JSON_PATH)
