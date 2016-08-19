@@ -3,10 +3,9 @@ TableConveter
 
   - Excel2Table (require Python 3.5 or later)
 
-    - Exce
+    - Excel
     - Json
     - Program
-
     - Excel2Json (run this file)
 
 
