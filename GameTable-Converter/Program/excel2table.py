@@ -15,6 +15,28 @@ PARENT_COLUMN_NAME = '*parent'
 IGNORE_WILDCARD = '_'
 
 
+class TypeUtility:
+    # xlrd is giving number as float
+
+    @staticmethod
+    def check_integer(value):
+        return type(value) == float and int(value) == value
+
+    # xlrd is giving boolean as integer
+    @staticmethod
+    def check_boolean(value):
+        return type(value) == int
+
+    @staticmethod
+    def convert_value(value):
+        if TypeUtility.check_integer(value):
+            return int(value)
+        elif TypeUtility.check_boolean(value):
+            return bool(value)
+        else:
+            return value
+
+
 class Table:
 
     def __init__(self, sheet):
@@ -71,25 +93,9 @@ class Table:
             if key[0] == IGNORE_WILDCARD:
                 continue
 
-            descriptor[key] = Table.convert_value(col[i])
+            descriptor[key] = TypeUtility.convert_value(col[i])
 
         return descriptor
-
-    # xlrd is giving number as float
-    def check_integer(value):
-        return type(value) == float and int(value) == value
-
-    # xlrd is giving boolean as integer
-    def check_boolean(value):
-        return type(value) == int
-
-    def convert_value(value):
-        if Table.check_integer(value):
-            return int(value)
-        elif Table.check_boolean(value):
-            return bool(value)
-        else:
-            return value
 
     def init_id_index_map(self):
         if not self.is_parent:
@@ -133,7 +139,6 @@ class Converter:
         self.export_path = export_path
 
     def convert(self, filename):
-
         only_filename = filename.split('/')
 
         print(only_filename[-1] + ' convert starting...')
@@ -145,11 +150,13 @@ class Converter:
 
         print(only_filename[-1] + ' convert is Done\n')
 
+    @staticmethod
     def get_sheets(filename):
         path = os.path.abspath(filename)
         workbook = xlrd.open_workbook(path)
         return workbook.sheets()
 
+    @staticmethod
     def get_tables(sheets):
         tables = {}
         root_tables = []
@@ -168,6 +175,7 @@ class Converter:
         else:
             raise Exception('Root table must be one')
 
+    @staticmethod
     def post_process(tables):
         for name, table in tables.items():
             if table.is_root:
