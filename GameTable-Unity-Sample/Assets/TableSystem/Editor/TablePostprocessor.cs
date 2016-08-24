@@ -55,13 +55,19 @@ public class TablePostProcessor : AssetPostprocessor
 
 	private static void Convert()
 	{
+		// Logging
 		UnityEngine.Debug.Log("Excecute Automatic Cconvert");
+
+		// Convert
 		ConvertExcelToJson();
+
+		// Refresh Assets folder
+		AssetDatabase.Refresh();
 	}
 
 	private static void ConvertExcelToJson()
 	{
-		Process.Start(ConverterPath, "");
+		Process.Start(ConverterPath, "").WaitForExit();
 	}
 }
 
