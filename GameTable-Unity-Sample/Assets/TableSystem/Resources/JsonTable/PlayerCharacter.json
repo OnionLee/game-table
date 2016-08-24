@@ -1,0 +1,47 @@
+[
+    {
+        "id": "CHAR0000",
+        "name": "인간",
+        "grade": "Normal",
+        "baseHP": 3,
+        "description": "인간이다",
+        "requirementsCondition": "없음",
+        "BaseItem": [
+            {
+                "itemId": "IT0001"
+            }
+        ]
+    },
+    {
+        "id": "CHAR0001",
+        "name": "천사",
+        "grade": "Rare",
+        "baseHP": 3,
+        "description": "천사다",
+        "requirementsCondition": "100번 죽기",
+        "BaseItem": [
+            {
+                "itemId": "IT0004"
+            },
+            {
+                "itemId": "IT0005"
+            }
+        ]
+    },
+    {
+        "id": "CHAR0002",
+        "name": "악마",
+        "grade": "Rare",
+        "baseHP": 3,
+        "description": "악마다",
+        "requirementsCondition": "몬스터 100회 죽이기",
+        "BaseItem": [
+            {
+                "itemId": "IT0006"
+            },
+            {
+                "itemId": "IT0007"
+            }
+        ]
+    }
+]

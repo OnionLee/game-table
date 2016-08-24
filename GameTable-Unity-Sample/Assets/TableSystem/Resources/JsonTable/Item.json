@@ -1,0 +1,207 @@
+[
+    {
+        "id": "IT0000",
+        "name": "하트",
+        "grade": "Normal",
+        "description": "체력을 올려준다",
+        "partType": "Consumption ",
+        "ItemEffect": [
+            {
+                "effectType": "HP",
+                "integerValue": 1,
+                "attackTypeValue": "None"
+            }
+        ]
+    },
+    {
+        "id": "IT0001",
+        "name": "곡괭이",
+        "grade": "Normal",
+        "description": "꽤나 아프다",
+        "partType": "Arm",
+        "ItemEffect": [
+            {
+                "effectType": "Power",
+                "integerValue": 1,
+                "attackTypeValue": "None"
+            },
+            {
+                "effectType": "AttackRange",
+                "integerValue": 1,
+                "attackTypeValue": "None"
+            },
+            {
+                "effectType": "AttackType",
+                "integerValue": 0,
+                "attackTypeValue": "Swing"
+            }
+        ]
+    },
+    {
+        "id": "IT0002",
+        "name": "천사의 링",
+        "grade": "Rare",
+        "description": "영웅은 죽지 않아요",
+        "partType": "Head",
+        "ItemEffect": [
+            {
+                "effectType": "MaxHP",
+                "integerValue": 2,
+                "attackTypeValue": "None"
+            }
+        ]
+    },
+    {
+        "id": "IT0003",
+        "name": "천사의 날개",
+        "grade": "Rare",
+        "description": "날개다",
+        "partType": "Body",
+        "ItemEffect": [
+            {
+                "effectType": "MaxHP",
+                "integerValue": 2,
+                "attackTypeValue": "None"
+            }
+        ]
+    },
+    {
+        "id": "IT0004",
+        "name": "악마의 뿔",
+        "grade": "Rare",
+        "description": "뿔이다",
+        "partType": "Head",
+        "ItemEffect": [
+            {
+                "effectType": "MaxHP",
+                "integerValue": 1,
+                "attackTypeValue": "None"
+            },
+            {
+                "effectType": "Power",
+                "integerValue": 1,
+                "attackTypeValue": "None"
+            }
+        ]
+    },
+    {
+        "id": "IT0005",
+        "name": "악마의 창",
+        "grade": "Rare",
+        "description": "창이다",
+        "partType": "Arm",
+        "ItemEffect": [
+            {
+                "effectType": "Power",
+                "integerValue": 3,
+                "attackTypeValue": "None"
+            },
+            {
+                "effectType": "AttackType",
+                "integerValue": 1,
+                "attackTypeValue": "Stab"
+            },
+            {
+                "effectType": "AttackRange",
+                "integerValue": 2,
+                "attackTypeValue": "None"
+            }
+        ]
+    },
+    {
+        "id": "IT0006",
+        "name": "부러진 검",
+        "grade": "Rare",
+        "description": "검이다",
+        "partType": "Arm",
+        "ItemEffect": [
+            {
+                "effectType": "Power",
+                "integerValue": 2,
+                "attackTypeValue": "None"
+            },
+            {
+                "effectType": "AttackRange",
+                "integerValue": 1,
+                "attackTypeValue": "None"
+            },
+            {
+                "effectType": "AttackType",
+                "integerValue": 0,
+                "attackTypeValue": "Swing"
+            }
+        ]
+    },
+    {
+        "id": "IT0007",
+        "name": "해골 지팡이",
+        "grade": "Epic",
+        "description": "팡이다",
+        "partType": "Arm",
+        "ItemEffect": [
+            {
+                "effectType": "Power",
+                "integerValue": 6,
+                "attackTypeValue": "None"
+            },
+            {
+                "effectType": "AttackRange",
+                "integerValue": 4,
+                "attackTypeValue": "None"
+            },
+            {
+                "effectType": "AttackType",
+                "integerValue": 0,
+                "attackTypeValue": "Magic"
+            }
+        ]
+    },
+    {
+        "id": "IT0008",
+        "name": "불의 검",
+        "grade": "Unique",
+        "description": "검이다",
+        "partType": "Arm",
+        "ItemEffect": [
+            {
+                "effectType": "Power",
+                "integerValue": 5,
+                "attackTypeValue": "None"
+            },
+            {
+                "effectType": "AttackRange",
+                "integerValue": 2,
+                "attackTypeValue": "None"
+            },
+            {
+                "effectType": "AttackType",
+                "integerValue": 0,
+                "attackTypeValue": "Swing"
+            }
+        ]
+    },
+    {
+        "id": "IT0009",
+        "name": "빔 스워드",
+        "grade": "Epic",
+        "description": "검이다",
+        "partType": "Arm",
+        "ItemEffect": [
+            {
+                "effectType": "Power",
+                "integerValue": 4,
+                "attackTypeValue": "None"
+            },
+            {
+                "effectType": "AttackRange",
+                "integerValue": 1,
+                "attackTypeValue": "None"
+            },
+            {
+                "effectType": "AttackType",
+                "integerValue": 0,
+                "attackTypeValue": "Swing"
+            }
+        ]
+    }
+]
