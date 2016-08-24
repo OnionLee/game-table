@@ -9,17 +9,20 @@ ManualConverter
   - Excel
   - Json
   - Program
-  - Excel2Json (Run this file in explorer)
+  - Manual Converter (Run this file in explorer)
 
 
 AutomaticConverter - (Put it in the assets folder)
+  - Requirements
+    - You should create a Assets/TableSystem/Resources/JsonTable folder
+    - If you want fix the folder path, fix this value Editor/Program/convert.py -> RESOURCES_JSON_PATH
 
   - Editor
   
     - Excel
     - Json
     - Program
-    - Excel2Json (If you want to use a manual, you can use it)
+    - Automatic Converter (If you want to use a manual, you can use it)
 
 
 Unity-Sample
@@ -27,7 +30,8 @@ Unity-Sample
   - Assets
   
     - GameTable-AutomaticConverter
-      - You should create a Resources/JsonTable folder
+      - You should create a Assets/TableSystem/Resources/JsonTable folder
+      - If you want fix the folder path, fix this value Editor/Program/convert.py -> RESOURCES_JSON_PATH
 
     - TableSystem
       - Descriptor (Comprise Descriptor Class)
