@@ -24,6 +24,7 @@ Unity-Sample
   - Assets
 
     - GameTable-AutomaticConverter
+      - You should create a Resources/JsonTable folder
 
     - TableSystem
       
