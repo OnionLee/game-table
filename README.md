@@ -5,15 +5,15 @@ System Requirements
 
 ManualConverter
 
-    - Excel
-    - Json
-    - Program
-    - Excel2Json (Run this file in explorer)
+  - Excel
+  - Json
+  - Program
+  - Excel2Json (Run this file in explorer)
 
 AutomaticConverter - (Put it in the assets folder)
 
   - Editor
-    
+  
     - Excel
     - Json
     - Program
@@ -22,12 +22,11 @@ AutomaticConverter - (Put it in the assets folder)
 Unity-Sample
 
   - Assets
-
+  
     - GameTable-AutomaticConverter
       - You should create a Resources/JsonTable folder
 
     - TableSystem
-      
       - Descriptor (Comprise Descriptor Class)
       - Editor (Comprise UnityEditor Scrips)
       - Plugins (Comprise Newtonsoft.Json)
