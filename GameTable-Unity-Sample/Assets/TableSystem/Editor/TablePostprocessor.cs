@@ -63,28 +63,5 @@ public class TablePostProcessor : AssetPostprocessor
 	{
 		Process.Start(ConverterPath, "");
 	}
-
-	public static void TempConvertExcelToJson()
-	{
-		Process process = new Process();
-		process.StartInfo.FileName = ConverterPath;
-		process.StartInfo.Arguments = "";
-
-		// Pipe the output to itself - we will catch thawdis later
-		process.StartInfo.RedirectStandardError = true;
-		process.StartInfo.RedirectStandardOutput = true;
-		process.StartInfo.CreateNoWindow = true;
-
-		// Where the script lives
-		process.StartInfo.WorkingDirectory = Application.dataPath + "/TableSystem/GameTable-AutomaticConverter/Editor/Program/";
-		process.StartInfo.UseShellExecute = false;
-
-		process.Start();
-
-		// Read the output - this will show is a single entry in the console - you could get  fancy and make it log for each line - but thats not why we're here
-		UnityEngine.Debug.Log(process.StandardOutput.ReadToEnd());
-		process.WaitForExit();
-		process.Close();	
-	}
 }
 
