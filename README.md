@@ -3,12 +3,14 @@
 System Requirements
   - Python 3.5 or later version
 
+
 ManualConverter
 
   - Excel
   - Json
   - Program
   - Excel2Json (Run this file in explorer)
+
 
 AutomaticConverter - (Put it in the assets folder)
 
@@ -18,6 +20,7 @@ AutomaticConverter - (Put it in the assets folder)
     - Json
     - Program
     - Excel2Json (If you want to use a manual, you can use it)
+
 
 Unity-Sample
 
