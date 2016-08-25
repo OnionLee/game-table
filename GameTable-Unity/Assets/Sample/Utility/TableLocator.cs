@@ -8,7 +8,7 @@ public static class TableLocator
 
 	static TableLocator()
 	{
-		CharacterTable = new CharacterTable ("JsonTable/Character");
-		SkillTable = new SkillTable("JsonTable/Skill");
+		CharacterTable = new CharacterTable ("Table/Character");
+		SkillTable = new SkillTable("Table/Skill");
 	}
 }
