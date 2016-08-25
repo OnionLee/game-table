@@ -8,12 +8,11 @@ using System.Diagnostics;
 public class TablePostProcessor : AssetPostprocessor 
 {
 	//Edit this field
-	//Excel File Path
-	static string kExcelFilesPath = "/Sample/Excel";
-
-	//Edit this field
-	//Converter Path
-	static string kConverterPath = "/Sample/run.bat";
+	//Root Path
+	static string kRootPath = "/GameTable-Converter";
+		
+	static string kExcelFilesPath = kRootPath + "/Excel";
+	static string kConverterPath = kRootPath + "/run.bat";
 
 	private static void OnPostprocessAllAssets(string[] importedAssets, string[] deletedAssets, string[] movedAssets, string[] movedFromAssetPaths) 
 	{
@@ -36,19 +35,18 @@ public class TablePostProcessor : AssetPostprocessor
 
 	private static void Convert()
 	{
-		// Logging
-		UnityEngine.Debug.Log("Excecute Automatic Cconvert");
+		UnityEngine.Debug.Log("Excecute Convert");
 
-		// Convert
 		ConvertExcelToJson();
 
-		// Refresh Assets folder
 		AssetDatabase.Refresh();
 	}
 
 	private static void ConvertExcelToJson()
 	{
-		UnityEngine.Debug.Log (Application.dataPath + kConverterPath);
-		Process.Start(Application.dataPath + kConverterPath, "").WaitForExit();
+		var info = new ProcessStartInfo ();
+		info.FileName = Application.dataPath + kConverterPath;
+		info.WorkingDirectory = Application.dataPath + kRootPath;
+		Process.Start (info);
 	}
 }
