@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-public class GenericTable<T> where T : BaseDescriptor
+public abstract class GenericTable<T> where T : BaseDescriptor
 {
 	private Dictionary<string, T> dictionary;
 

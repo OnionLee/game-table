@@ -1,9 +1,9 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 
-public class BaseDescriptor 
+public abstract class BaseDescriptor 
 {
 	[JsonProperty("id")]
 	public string Id { get; private set; }
