@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameTable-Unity-Sample.CSharp", "GameTable-Unity-Sample.CSharp.csproj", "{EB9F7CCC-5E47-059E-98E1-6708289D5C3A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameTable-Unity-Sample.CSharp.Editor", "GameTable-Unity-Sample.CSharp.Editor.csproj", "{A6A16FE2-C091-7257-7A83-88F2A237A2F2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EB9F7CCC-5E47-059E-98E1-6708289D5C3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB9F7CCC-5E47-059E-98E1-6708289D5C3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB9F7CCC-5E47-059E-98E1-6708289D5C3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB9F7CCC-5E47-059E-98E1-6708289D5C3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6A16FE2-C091-7257-7A83-88F2A237A2F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6A16FE2-C091-7257-7A83-88F2A237A2F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6A16FE2-C091-7257-7A83-88F2A237A2F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6A16FE2-C091-7257-7A83-88F2A237A2F2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

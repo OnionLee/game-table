@@ -7,7 +7,12 @@ REQUIRE_VERSION = (3, 5)
 
 # File path
 EXCEL_PATH = '../Excel/'
+<<<<<<< HEAD:GameTable-AutomaticConverter/Editor/Program/convert.py
+EDITOR_JSON_PATH  = '../Json/'
+RESOURCES_JSON_PATH = '../../../Resources/JsonTable/'
+=======
 JSON_PATH = '../../Sample/Resources/Table/'
+>>>>>>> 78c259f25739534086cc1c234cb0e003b07ac9af:GameTable-Unity/Assets/GameTable-Converter/Converter/convert.py
 
 # Get current python version
 current_version = sys.version_info
