@@ -8,7 +8,7 @@ REQUIRE_VERSION = (3, 5)
 # File path
 EXCEL_PATH = '../Excel/'
 EDITOR_JSON_PATH  = '../Json/'
-RESOURCES_JSON_PATH = '../../../TableSystem/Resources/JsonTable/'
+RESOURCES_JSON_PATH = '../../../Resources/JsonTable/'
 
 # Get current python version
 current_version = sys.version_info
