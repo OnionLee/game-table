@@ -23,3 +23,6 @@
     - Plugins -> TableSystem에 필요한 라이브러리 폴더입니다.
   
   - GameTable-Unity -> Convert와 TableSystem을 사용하는 유니티 샘플입니다.
+  
+  TODO
+  deploy unitypackage
