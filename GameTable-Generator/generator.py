@@ -58,7 +58,8 @@ class Table:
         row = sheet.row_values(PARENT_NAME_ROW)
         self.parent_name = row[PARENT_NAME_COL]
         if type(self.parent_name) is not str:
-            raise Exception('Parent name is not string')
+            raise Exception('[' + self.name + ']' + 'Parent name is not string')
+            sys.exit()
 
         self.is_root = self.parent_name == ROOT_NAME
 
@@ -69,7 +70,8 @@ class Table:
         self.column_names = []
         for value in row:
             if type(value) is not str:
-                raise Exception('Column name is not string')
+                raise Exception('[' + self.name + ']' + 'Column name is not string')
+                sys.exit()
 
             if value == ID_COLUMN_NAME:
                 self.is_parent = True
@@ -78,18 +80,34 @@ class Table:
             self.column_names.append(value)
 
         if self.is_root and self.is_child:
-            raise Exception('Root table must not have "' +
-                            PARENT_COLUMN_NAME + '" column')
+            raise Exception('[' + self.name + ']' + 'Root table must not have a "' + PARENT_COLUMN_NAME + '" column')
+            sys.exit()
 
         if not self.is_root and not self.is_child:
-            raise Exception('Child table must have "' +
-                            PARENT_COLUMN_NAME + '" column')
+            raise Exception('[' + self.name + ']' + 'Child table must have a "' + PARENT_COLUMN_NAME + '" column')
+            sys.exit()
 
     def init_descriptors(self, sheet):
         self.descriptors = []
+        id_table = []
+		
         for i in range(DATA_STARTING_ROW, sheet.nrows):
+            #add metadata row count
+            rowcount = i + 1
             col = sheet.row_values(i)
-            self.descriptors.append(self.get_descriptor(col))
+            desc = self.get_descriptor(col)
+            id = desc[ID_COLUMN_NAME]
+
+            if not id:
+                raise Exception('[' + self.name + ']' + 'Descriptor id must have a value - row : ' + str(i + 1))
+                sys.exit()
+            
+            if id in id_table:
+                raise Exception('[' + self.name + ']' + 'Descriptor id is duplicated - row : ' + str(i + 1))
+                sys.exit()
+
+            id_table.append(id)
+            self.descriptors.append(desc)
 
     def get_descriptor(self, col):
         descriptor = OrderedDict()
@@ -97,9 +115,9 @@ class Table:
             key = self.column_names[i]
             if key[0] == IGNORE_WILDCARD:
                 continue
-
+            
             descriptor[key] = TypeUtility.convert_value(col[i])
-
+            
         return descriptor
 
     def init_id_index_map(self):
@@ -144,16 +162,14 @@ class Converter:
         self.export_path = export_path
 
     def convert(self, filename):
-        only_filename = filename.split('/')
-
-        print(only_filename[-1] + ' convert starting...')
+        print(filename + ' convert starting...')
 
         sheets = Converter.get_sheets(filename)
         root_table, tables = Converter.get_tables(sheets)
         Converter.post_process(tables)
         root_table.save_to_json(self.pretty_print, self.export_path)
 
-        print(only_filename[-1] + ' convert is Done\n')
+        print(filename + ' convert is Done\n')
 
     @staticmethod
     def get_sheets(filename):
@@ -179,6 +195,7 @@ class Converter:
             return root_tables[0], tables
         else:
             raise Exception('Root table must be one')
+            sys.exit()
 
     @staticmethod
     def post_process(tables):
@@ -188,7 +205,8 @@ class Converter:
 
             parent_table = tables[table.parent_name]
             if not parent_table.is_parent:
-                raise Exception('Parent table must have id column')
+                raise Exception('Parent table must have a id column')
+                sys.exit()
 
             parent_table.merge_child_table(table)
             table.remove_parent_column()
@@ -196,12 +214,10 @@ class Converter:
 # Script
 current_version = sys.version_info
 if current_version < REQUIRE_VERSION:
-    print('You Need Python 3.5 or later')
-    input()
+    raise Exception('[eeror]You Need Python 3.5 or later')
     sys.exit()
 
 json_path = sys.argv[1] if len(sys.argv) > 1 else './'
-print(json_path)
 converter = Converter(True, json_path)
     
 for path, dirs, files in os.walk(EXCEL_PATH):
