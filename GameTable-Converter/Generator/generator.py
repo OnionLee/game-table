@@ -1,10 +1,12 @@
 import xlrd
 import os
+import sys
 import copy
 import json
 import codecs
 from collections import OrderedDict
 
+# Constant Values
 PARENT_NAME_ROW = 0
 PARENT_NAME_COL = 0
 COLUMN_NAMES_ROW = 1
@@ -13,8 +15,11 @@ ROOT_NAME = '*root'
 ID_COLUMN_NAME = 'id'
 PARENT_COLUMN_NAME = '*parent'
 IGNORE_WILDCARD = '_'
+REQUIRE_VERSION = (3, 5)
+EXCEL_PATH = './'
 
 
+# Class
 class TypeUtility:
     # xlrd is giving number as float
 
@@ -187,3 +192,22 @@ class Converter:
 
             parent_table.merge_child_table(table)
             table.remove_parent_column()
+
+# Script
+current_version = sys.version_info
+if current_version < REQUIRE_VERSION:
+    print('You Need Python 3.5 or later')
+    input()
+    sys.exit()
+
+json_path = sys.argv[1] if len(sys.argv) > 1 else './'
+print(json_path)
+converter = Converter(True, json_path)
+    
+for path, dirs, files in os.walk(EXCEL_PATH):
+    for file in files:
+        if file[0] is "~":
+            continue
+        
+        if os.path.splitext(file)[1].lower() == '.xlsx':
+            converter.convert(EXCEL_PATH + file)
