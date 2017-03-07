@@ -1,52 +1,78 @@
-﻿using UnityEngine;
+﻿using System.Diagnostics;
 using UnityEditor;
+using UnityEngine;
+using System.Linq;
 
-using System.Collections.Generic;
-using System.Diagnostics;
-
-
-public class TablePostProcessor : AssetPostprocessor 
+public class TablePostProcessor : AssetPostprocessor
 {
-	//Edit this field
-	//Root Path
-	static string kRootPath = "/GameTable-Converter";
-		
-	static string kExcelFilesPath = kRootPath + "/Excel";
-	static string kConverterPath = kRootPath + "/run.bat";
+    //Edit this fields
 
-	private static void OnPostprocessAllAssets(string[] importedAssets, string[] deletedAssets, string[] movedAssets, string[] movedFromAssetPaths) 
-	{
-		foreach (string filePath in importedAssets)
-		{
-			if (filePath.Contains (kExcelFilesPath) == false)
-				continue;
+    //Excel, Generator Path
+    private static string kRootPath = "/GameTable-Generator";
+    private static string kGeneratorFileName = "generator.py";
+    private static string kJsonPath = "/Sample/Resources/Table/";
 
-			// Check is this Excel file
-			if (filePath.EndsWith(".xlsx") == false)
-				continue;
-			
-			// Check is this temp file
-			if (filePath.StartsWith("~"))
-				continue;
+    private static void OnPostprocessAllAssets(string[] importedAssets, string[] deletedAssets, string[] movedAssets, string[] movedFromAssetPaths)
+    {
+        foreach (string filePath in importedAssets)
+        {
+            if (filePath.Contains(kRootPath) == false)
+                continue;
 
-			Convert ();
-		}
-	}
+            // Check is this Excel file
+            if (filePath.EndsWith(".xlsx") == false)
+                continue;
 
-	private static void Convert()
-	{
-		UnityEngine.Debug.Log("Excecute Convert");
+            // Check is this temp file
+            if (filePath.StartsWith("~"))
+                continue;
 
-		ConvertExcelToJson();
+            Generate();
+            break;
+        }
+    }
 
-		AssetDatabase.Refresh();
-	}
+    private static void Generate()
+    {
+        RunGenerator();
 
-	private static void ConvertExcelToJson()
-	{
-		var info = new ProcessStartInfo ();
-		info.FileName = Application.dataPath + kConverterPath;
-		info.WorkingDirectory = Application.dataPath + kRootPath;
-		Process.Start (info);
-	}
+        AssetDatabase.Refresh();
+    }
+
+    private static void RunGenerator()
+    {
+        var cmdPath = Application.dataPath + kJsonPath;
+        cmdPath.Replace(@"\", @"/");
+
+        var proInfo = new ProcessStartInfo();
+        proInfo.FileName = @"py";
+        proInfo.WorkingDirectory = Application.dataPath + kRootPath;
+        proInfo.Arguments = kGeneratorFileName + " " + cmdPath;
+
+        proInfo.CreateNoWindow = true;
+        proInfo.UseShellExecute = false;
+
+        proInfo.RedirectStandardOutput = true;
+        proInfo.RedirectStandardError = true;
+
+        var pro = new Process();
+        pro.StartInfo = proInfo;
+        pro.Start();
+
+        var logs = pro.StandardOutput.ReadToEnd().Split('\n').Where(l => l.Length > 0 && l[0] != '\r').Skip(0);
+        pro.WaitForExit();
+        pro.Close();
+
+        foreach (var log in logs)
+        {
+            if (log.Contains("[error]"))
+            {
+                UnityEngine.Debug.LogError(log);
+            }
+            else
+            {
+                UnityEngine.Debug.Log(log);
+            }
+        }
+    }
 }
