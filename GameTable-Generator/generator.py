@@ -96,17 +96,20 @@ class Table:
             rowcount = i + 1
             col = sheet.row_values(i)
             desc = self.get_descriptor(col)
-            id = desc[ID_COLUMN_NAME]
 
-            if not id:
-                raise Exception('[' + self.name + ']' + 'Descriptor id must have a value - row : ' + str(i + 1))
-                sys.exit()
-            
-            if id in id_table:
-                raise Exception('[' + self.name + ']' + 'Descriptor id is duplicated - row : ' + str(i + 1))
-                sys.exit()
+            if self.is_parent:
+                id = desc[ID_COLUMN_NAME]
+                
+                if not id:
+                    raise Exception('[' + self.name + ']' + 'Descriptor id must have a value - row : ' + str(i + 1))
+                    sys.exit()
+                
+                if id in id_table:
+                    raise Exception('[' + self.name + ']' + 'Descriptor id is duplicated - row : ' + str(i + 1))
+                    sys.exit()
 
-            id_table.append(id)
+                id_table.append(id)
+                
             self.descriptors.append(desc)
 
     def get_descriptor(self, col):
