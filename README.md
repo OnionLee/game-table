@@ -26,8 +26,7 @@
   
   TODO
   
-  deploy unitypackage
-  
-  improve documents
-  
-  add c++ sample 
+  * deploy unitypackage
+  * improve documents
+  * add c++ sample 
+  * add override feature
